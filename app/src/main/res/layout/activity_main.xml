@@ -11,7 +11,19 @@
         android:layout_height="wrap_content"
         android:id="@+id/logout"
         android:text="log out"
-        android:layout_centerInParent="true"/>
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/logout"
+        android:layout_below="@id/add"
+        android:padding="10dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/listView"/>
 
     <EditText
         android:layout_width="match_parent"
