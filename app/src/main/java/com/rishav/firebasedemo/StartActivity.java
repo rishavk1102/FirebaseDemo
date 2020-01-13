@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class StartActivity extends AppCompatActivity {
 
     private Button register;
@@ -35,5 +38,16 @@ public class StartActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user != null){
+            startActivity(new Intent(StartActivity.this , MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+        }
     }
 }
