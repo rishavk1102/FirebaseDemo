@@ -1,24 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StartActivity">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Button
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/icon"
+        android:layout_centerInParent="true"
+        android:id="@+id/icon_image"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="register"
-        android:id="@+id/register"
-        android:layout_marginTop="100dp"/>
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:id="@+id/linear_layout">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="login"
-        android:id="@+id/login"
-        android:layout_below="@id/register"
-        android:layout_marginTop="100dp"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:src="@drawable/logo"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/button_background"
+            android:text="Log In"
+            android:textAllCaps="false"
+            android:id="@+id/login"/>
+
+        <androidx.legacy.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="10dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/button_background"
+            android:text="Register"
+            android:textAllCaps="false"
+            android:id="@+id/register"/>
+
+    </LinearLayout>
 
 </RelativeLayout>
