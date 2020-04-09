@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_more"
+        android:layout_margin="15dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/profile_image"
+                android:src="@mipmap/ic_launcher"
+                android:layout_margin="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/username"
+                android:text="Username"
+                android:layout_gravity="center_vertical"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_margin="5dp"/>
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                android:id="@+id/post_image"
+                tools:ignore="MissingConstraints"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_like"
+                android:id="@+id/like"/>
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_comment"
+                android:layout_toEndOf="@id/like"
+                android:layout_marginStart="10dp"
+                android:id="@+id/comment"/>
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_save"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/save"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:id="@+id/no_of_likes"
+            android:text="123 likes"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textStyle="bold"
+            android:text="Rishav kumar"
+            android:id="@+id/author"
+            android:textColor="@color/colorPrimaryDark"/>
+
+        <com.hendraanggrian.appcompat.widget.SocialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="Rishav description"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/description"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/no_of_comments"
+            android:textColor="@color/colorAccent"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
