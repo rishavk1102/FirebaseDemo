@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:src="@drawable/ic_more"
-        android:layout_margin="15dp"/>
+        android:layout_margin="15dp"
+        android:id="@+id/more"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,15 +26,13 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:id="@+id/profile_image"
-                android:src="@mipmap/ic_launcher"
+                android:id="@+id/image_profile"
                 android:layout_margin="5dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/username"
-                android:text="Username"
                 android:layout_gravity="center_vertical"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -88,7 +87,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:id="@+id/no_of_likes"
-            android:text="123 likes"
             android:textStyle="bold"
             android:textColor="@color/colorAccent"/>
 
@@ -97,7 +95,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:textStyle="bold"
-            android:text="Rishav kumar"
             android:id="@+id/author"
             android:textColor="@color/colorPrimaryDark"/>
 
@@ -107,7 +104,6 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:text="Rishav description"
             android:textColor="@color/colorAccent"
             android:id="@+id/description"/>
 
