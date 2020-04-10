@@ -37,19 +37,27 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String txt_email = email.getText().toString();
                 String txt_password = password.getText().toString();
-                loginUser(txt_email , txt_password);
+                if(TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)) {
+                    Toast.makeText(LoginActivity.this, "Fill Login Details", Toast.LENGTH_SHORT).show();
+                }else{
+                    loginUser(txt_email , txt_password);
+                }
             }
         });
     }
 
     private void loginUser(String email, String password) {
 
-        auth.signInWithEmailAndPassword(email , password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+        aauth.signInWithEmailAndPassword(email , password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onSuccess(AuthResult authResult) {
-                Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(LoginActivity.this , MainActivity.class));
-                finish();
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (!task.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this, "Sign In Error", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Login.this, MainActivity.class));
+                    finish();
+                }
             }
         });
 
