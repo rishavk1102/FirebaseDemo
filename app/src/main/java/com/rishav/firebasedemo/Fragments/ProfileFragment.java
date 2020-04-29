@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rishav.firebasedemo.Adapter.PhotoAdapter;
+import com.rishav.firebasedemo.Adapter.PostAdapter;
 import com.rishav.firebasedemo.Model.Post;
 import com.rishav.firebasedemo.Model.User;
 import com.rishav.firebasedemo.R;
@@ -37,6 +38,10 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
+
+    private RecyclerView recyclerViewSaves;
+    private PhotoAdapter postAdapterSaves;
+    private List<Post> mySavedPosts;
 
     private RecyclerView recyclerView;
     private PhotoAdapter photoAdapter;
@@ -94,10 +99,18 @@ public class ProfileFragment extends Fragment {
         photoAdapter = new PhotoAdapter(getContext(), myPhotoList);
         recyclerView.setAdapter(photoAdapter);
 
+        recyclerViewSaves = view.findViewById(R.id.recucler_view_saved);
+        recyclerViewSaves.setHasFixedSize(true);
+        recyclerViewSaves.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        mySavedPosts = new ArrayList<>();
+        postAdapterSaves = new PhotoAdapter(getContext(), mySavedPosts);
+        recyclerViewSaves.setAdapter(postAdapterSaves);
+
         userInfo();
         getFollowersAndFollowingCount();
         getPostCount();
         myPhotos();
+        getSavedPosts();
 
         if (profileId.equals(fUser.getUid())) {
             editProfile.setText("Edit profile");
@@ -130,7 +143,72 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        recyclerView.setVisibility(View.VISIBLE);
+        recyclerViewSaves.setVisibility(View.GONE);
+
+        myPictures.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerView.setVisibility(View.VISIBLE);
+                recyclerViewSaves.setVisibility(View.GONE);
+            }
+        });
+
+        savedPictures.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerView.setVisibility(View.GONE);
+                recyclerViewSaves.setVisibility(View.VISIBLE);
+            }
+        });
+
+
         return view;
+    }
+
+    private void getSavedPosts() {
+
+        final List<String> savedIds = new ArrayList<>();
+
+        FirebaseDatabase.getInstance().getReference().child("Saves").child(fUser.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    savedIds.add(snapshot.getKey());
+                }
+
+                FirebaseDatabase.getInstance().getReference().child("Posts").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
+                        mySavedPosts.clear();
+
+                        for (DataSnapshot snapshot1 : dataSnapshot1.getChildren()) {
+                            Post post = snapshot1.getValue(Post.class);
+
+                            for (String id : savedIds) {
+                                if (post.getPostid().equals(id)) {
+                                    mySavedPosts.add(post);
+                                }
+                            }
+                        }
+
+                        postAdapterSaves.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     private void myPhotos() {
