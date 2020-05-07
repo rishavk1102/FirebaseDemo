@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.hendraanggrian.appcompat.widget.SocialTextView;
 import com.rishav.firebasedemo.CommentActivity;
+import com.rishav.firebasedemo.Fragments.PostDetailFragment;
+import com.rishav.firebasedemo.Fragments.ProfileFragment;
 import com.rishav.firebasedemo.Model.Post;
 import com.rishav.firebasedemo.Model.User;
 import com.rishav.firebasedemo.R;
@@ -121,6 +124,49 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
                     FirebaseDatabase.getInstance().getReference().child("Saves")
                             .child(firebaseUser.getUid()).child(post.getPostid()).removeValue();
                 }
+            }
+        });
+
+        holder.imageProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE)
+                        .edit().putString("profileId", post.getPublisher()).apply();
+
+                ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new ProfileFragment()).commit();
+            }
+        });
+
+        holder.username.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE)
+                        .edit().putString("profileId", post.getPublisher()).apply();
+
+                ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new ProfileFragment()).commit();
+            }
+        });
+
+        holder.author.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE)
+                        .edit().putString("profileId", post.getPublisher()).apply();
+
+                ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new ProfileFragment()).commit();
+            }
+        });
+
+        holder.postImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit().putString("postid", post.getPostid()).apply();
+
+                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new PostDetailFragment()).commit();
             }
         });
 
