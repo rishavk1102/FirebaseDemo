@@ -37,6 +37,8 @@ dependencies {
     implementation "com.hendraanggrian.appcompat:socialview-commons:0.2"
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
 
+    implementation 'com.rengwuxian.materialedittext:library:2.1.4'
+
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

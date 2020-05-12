@@ -1,6 +1,7 @@
 package com.rishav.firebasedemo.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -26,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rishav.firebasedemo.Adapter.PhotoAdapter;
 import com.rishav.firebasedemo.Adapter.PostAdapter;
+import com.rishav.firebasedemo.EditProfileActivity;
 import com.rishav.firebasedemo.Model.Post;
 import com.rishav.firebasedemo.Model.User;
 import com.rishav.firebasedemo.R;
@@ -78,6 +80,7 @@ public class ProfileFragment extends Fragment {
             profileId = fUser.getUid();
         } else {
             profileId = data;
+            getContext().getSharedPreferences("PROFILE", Context.MODE_PRIVATE).edit().clear().apply();
         }
 
         imageProfile = view.findViewById(R.id.image_profile);
@@ -124,7 +127,7 @@ public class ProfileFragment extends Fragment {
                 String btnText = editProfile.getText().toString();
 
                 if (btnText.equals("Edit profile")) {
-                    // GOTO edit activity
+                    startActivity(new Intent(getContext(), EditProfileActivity.class));
                 } else {
                     if (btnText.equals("follow")) {
                         FirebaseDatabase.getInstance().getReference().child("Follow").child(fUser.getUid())
