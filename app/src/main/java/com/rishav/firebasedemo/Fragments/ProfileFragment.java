@@ -28,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.rishav.firebasedemo.Adapter.PhotoAdapter;
 import com.rishav.firebasedemo.Adapter.PostAdapter;
 import com.rishav.firebasedemo.EditProfileActivity;
+import com.rishav.firebasedemo.FollowersActivity;
 import com.rishav.firebasedemo.Model.Post;
 import com.rishav.firebasedemo.Model.User;
 import com.rishav.firebasedemo.R;
@@ -165,6 +166,25 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        followers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), FollowersActivity.class);
+                intent.putExtra("id", profileId);
+                intent.putExtra("title", "followers");
+                startActivity(intent);
+            }
+        });
+
+        following.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), FollowersActivity.class);
+                intent.putExtra("id", profileId);
+                intent.putExtra("title", "followings");
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

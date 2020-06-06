@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.hendraanggrian.appcompat.widget.SocialTextView;
 import com.rishav.firebasedemo.CommentActivity;
+import com.rishav.firebasedemo.FollowersActivity;
 import com.rishav.firebasedemo.Fragments.PostDetailFragment;
 import com.rishav.firebasedemo.Fragments.ProfileFragment;
 import com.rishav.firebasedemo.Model.Post;
@@ -170,6 +171,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
 
                 ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new PostDetailFragment()).commit();
+            }
+        });
+
+        holder.noOfLikes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, FollowersActivity.class);
+                intent.putExtra("id", post.getPublisher());
+                intent.putExtra("title", "likes");
+                mContext.startActivity(intent);
             }
         });
 
