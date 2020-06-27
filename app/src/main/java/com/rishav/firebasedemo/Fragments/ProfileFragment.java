@@ -31,6 +31,7 @@ import com.rishav.firebasedemo.EditProfileActivity;
 import com.rishav.firebasedemo.FollowersActivity;
 import com.rishav.firebasedemo.Model.Post;
 import com.rishav.firebasedemo.Model.User;
+import com.rishav.firebasedemo.OptionsActivity;
 import com.rishav.firebasedemo.R;
 import com.squareup.picasso.Picasso;
 
@@ -183,6 +184,13 @@ public class ProfileFragment extends Fragment {
                 intent.putExtra("id", profileId);
                 intent.putExtra("title", "followings");
                 startActivity(intent);
+            }
+        });
+
+        options.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), OptionsActivity.class));
             }
         });
 
