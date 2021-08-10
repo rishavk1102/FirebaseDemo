@@ -83,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void registerUser(final String username, final String name, final String email, String password) {
 
-        pd.setMessage("Please Wail!");
+        pd.setMessage("Please Wait!");
         pd.show();
 
         mAuth.createUserWithEmailAndPassword(email , password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
